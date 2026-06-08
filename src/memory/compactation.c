@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include "../../include/memory_manager.h"
-#include "../../include/algorithms.h"
+#include "memory_manager.h"
+#include "algorithms.h"
 
 void mm_compact(MemoryManager* mm) {
     if (!mm || !mm->head) return;

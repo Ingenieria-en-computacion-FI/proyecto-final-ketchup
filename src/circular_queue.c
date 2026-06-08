@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../include/circular_queue.h"
+#include "circular_queue.h"
 
 // Estructura de la cola circular
 struct CircularQueue {

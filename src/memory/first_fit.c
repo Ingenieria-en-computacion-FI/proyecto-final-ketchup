@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../include/memory_manager.h"
+#include "memory_manager.h"
 
 // Inicializa el administrador creando un único renglón con toda la capacidad libre
 // Complejidad Temporal: O(1) | Complejidad Espacial: O(1)

@@ -1,20 +1,27 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -std=c11 -Iinclude
+CFLAGS=-Wall -Wextra -std=c11 -Iinclude -g
 
-SRC=$(wildcard src/**/*.c src/*.c)
-TESTS=$(wildcard tests/*.c)
+SRC_DIRS = src src/algorithms src/memory src/scheduler src/utils
 
-all:
+SRC = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
+
+TESTS = $(wildcard tests/*.c)
+
+all: clean build
+
+build:
 	mkdir -p bin
 	$(CC) $(CFLAGS) $(SRC) -o bin/main
 
-run:
+run: build
 	./bin/main
 
-test:
+test: clean
 	mkdir -p bin
-	$(CC) $(CFLAGS) $(TESTS) $(SRC) -o bin/tests
+	$(CC) $(CFLAGS) $(TESTS) $(filter-out src/main.c, $(SRC)) -o bin/tests
 	./bin/tests
 
 clean:
 	rm -rf bin/*
+
+

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../include/stack.h"
+#include "stack.h"
 
 // Nodo dinámico lineal interno de la pila
 struct Node {

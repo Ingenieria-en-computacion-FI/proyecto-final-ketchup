@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "../../include/memory_manager.h"
+#include "memory_manager.h"
 
 // Coalescencia: Une bloques libres adyacentes de forma consecutiva
 // Complejidad Temporal: O(n) | Complejidad Espacial: O(1)

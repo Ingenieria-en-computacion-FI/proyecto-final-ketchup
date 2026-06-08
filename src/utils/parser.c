@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../include/process.h"
+#include "process.h"
 
 // Lee el archivo CSV asumiendo que contiene unicamente datos en crudo (sin linea de cabecera)
 int parse_processes(const char* filename, Process* procesos_array, int max_capacity) {

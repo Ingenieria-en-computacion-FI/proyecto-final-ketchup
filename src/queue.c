@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../queue.h"
+#include "queue.h"
 
 // Estructura interna para los nodos de la cola dinámica
 struct QNode {

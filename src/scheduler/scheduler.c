@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../include/scheduler.h"
-#include "../../include/queue.h"
-#include "../../include/circular_queue.h"
-#include "../../include/process.h"
+#include "scheduler.h"
+#include "queue.h"
+#include "circular_queue.h"
+#include "process.h"
 
 #define MAX_SJF 256
 #define MAX_RR 256

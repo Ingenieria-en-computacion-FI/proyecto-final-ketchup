@@ -6,12 +6,10 @@ MemoryBlock* algo_brute_force_find(MemoryManager* mm, int size) {
     
     MemoryBlock* current = mm->head;
     MemoryBlock* valid_candidate = NULL;
-    int holes_found = 0;
 
     // Exploración exhaustiva: recorre absolutamente toda la estructura
     while (current != NULL) {
-        if (current->free) {
-            holes_found++;
+	if(current -> free){
             // Registramos el primer candidato viable encontrado en la exploración
             if (current->size >= size && valid_candidate == NULL) {
                 valid_candidate = current;
