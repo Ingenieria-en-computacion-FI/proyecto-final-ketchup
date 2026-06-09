@@ -65,7 +65,7 @@ int dequeue(Queue* queue) {
     
     free(tmp);      // Liberamos el nodo removido
     queue->size--;  // Decrementamos el contador
-    return value;   // Retornamos el valor extraído
+    return value;   // Retornamos el ID extraído
 }
 
 // Evalúa si la cola carece de elementos
