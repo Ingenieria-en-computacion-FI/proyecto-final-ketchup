@@ -25,7 +25,4 @@ void mm_coalesce(MemoryManager* mm);
 void mm_destroy(MemoryManager* mm);
 void mm_print(MemoryManager* mm);
 
-int mm_allocate_best_fit(MemoryManager* mm, int pid, int size);
-int mm_allocate_worst_fit(MemoryManager* mm, int pid, int size);
-void mm_compact(MemoryManager* mm);
 #endif
