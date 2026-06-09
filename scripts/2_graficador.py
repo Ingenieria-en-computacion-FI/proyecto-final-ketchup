@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def graficar_resultados(archivo_entrada = "resultados.csv"):
+def graficar_resultados(archivo_entrada = "data/outputs/resultados.csv"):
     try:
         df = pd.read_csv(archivo_entrada)
         # 1. Limpiamos las cabeceras (nombres de las columnas)
@@ -9,7 +9,7 @@ def graficar_resultados(archivo_entrada = "resultados.csv"):
         # 2. Limpiamos los datos internos de la columna para quitar espacios fantasmas
         df['Estado_Final'] = df['Estado_Final'].str.strip()
     except FileNotFoundError:
-        print("Error: No se encontro el archivo. Corre el simulador en C primero.")
+        print(f"Error: No se encontro el archivo {archivo_entrada}. Corre el simulador en C primero.")
         return 
 
     # Separamos los procesos por su estado final
@@ -35,9 +35,10 @@ def graficar_resultados(archivo_entrada = "resultados.csv"):
     plt.xticks(rotation=45)
     plt.tight_layout()
 
-    # Guardamos la imagen
-    plt.savefig("grafica_recursos.png", dpi=300)
-    print("Grafica guardada como 'grafica_recursos.png'.")
+    # Guardamos la imagen en la carpeta de reportes
+    ruta_salida = "reports/png/grafica_recursos.png"
+    plt.savefig(ruta_salida, dpi=300)
+    print(f"Grafica guardada como '{ruta_salida}'.")
 
 if __name__ == "__main__":
     graficar_resultados()

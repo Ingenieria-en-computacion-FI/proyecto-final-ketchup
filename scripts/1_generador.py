@@ -1,7 +1,7 @@
 import csv
 import random
 
-def generador_procesos(cantidad=25, archivo_salida='Procesos.csv'):	
+def generador_procesos(cantidad=25, archivo_salida='data/inputs/Procesos.csv'):	
 	with open(archivo_salida, mode = 'w', newline = '') as file:
 		writer = csv.writer(file)
 		writer.writerow(["PID", "Burst_Time", "Priority", "Memory_MB"])

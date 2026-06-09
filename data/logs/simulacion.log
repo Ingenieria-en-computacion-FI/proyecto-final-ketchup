@@ -1,0 +1,23 @@
+==================================================
+   UNAM - SIMULADOR DE SISTEMA OPERATIVO (2026-2) 
+==================================================
+
+[Info] Parser cargó exitosamente 0 procesos desde el CSV.
+
+--- FASE 2: ANÁLISIS DE FACTIBILIDAD Y EXPLORACIÓN EXHAUSTIVA ---
+  [Backtracking] Evaluando espacio de estados para asignación masiva...
+  [Backtracking] ¡ÉXITO! Se encontró una distribución teórica válida para el lote.
+  [Fuerza Bruta] Verificación de bloques libres activa. Primer hueco viable detectado en offset: 0 MB
+
+--- FASE 3: ASIGNACIÓN DE MEMORIA PRINCIPAL (POLÍTICA: BEST FIT) ---
+
+
+--- FASE 4: PLANIFICACION DE CPU (ROUND ROBIN INTERRUPTIBLE) ---
+
+
+--- FASE 5: AUDITORÍA POST-MORTEM DEL SISTEMA (HISTORIAL LIFO) ---
+Orden inverso de finalización registrado en la estructura de auditoría:
+
+==================================================
+   SIMULACIÓN CONCLUIDA CON ÉXITO SIN FUGAS       
+==================================================

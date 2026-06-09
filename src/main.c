@@ -35,10 +35,10 @@ int main() {
     // -------------------------------------------------------------------------
     Process procesos_carga[256];
     // Invoca al parser diseñado para archivos crudos sin cabeceras tradicionales
-    int total_procesos = parse_processes("Procesos.csv", procesos_carga, 256);
+    int total_procesos = parse_processes("data/inputs/Procesos.csv", procesos_carga, 256);
     
     if (total_procesos == -1) {
-        log_event("ERROR: No se encontró 'Procesos.csv'. Ejecuta el generador de Python primero.\n");
+        log_event("ERROR: No se encontró data/inputs/Procesos.csv'. Ejecuta el generador de Python primero.\n");
         mm_destroy(memoria);
         stack_destroy(historial_auditoria);
         return 1;
@@ -103,12 +103,12 @@ int main() {
     // -------------------------------------------------------------------------
     // FASE 4: Planificación de CPU y Exportación de Resultados
     // -------------------------------------------------------------------------
-    log_event("--- FASE 4: PLANIFICACIÓN DE CPU (ROUND ROBIN INTERRUPTIBLE) ---\n");
+    log_event("--- FASE 4: PLANIFICACION DE CPU (ROUND ROBIN INTERRUPTIBLE) ---\n");
     Scheduler* planificador = scheduler_create_rr(2); // Quantum = 2 unidades de tiempo
     
-    FILE* fp_out = fopen("resultados.csv", "w");
+    FILE* fp_out = fopen("data/outputs/resultados.csv", "w");
     if (!fp_out) {
-        log_event("ERROR: No se pudo generar el reporte de métricas 'resultados.csv'\n");
+        log_event("ERROR: No se pudo generar el reporte de métricas data/outputs/resultados.csv'\n");
         mm_destroy(memoria);
         scheduler_destroy(planificador);
         stack_destroy(historial_auditoria);
