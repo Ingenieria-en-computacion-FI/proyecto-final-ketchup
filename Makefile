@@ -1,39 +1,48 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -std=c11 -Iinclude -g
+# Variables de configuración del compilador de C
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c99 -g
 
-SRC_DIRS = src src/algorithms src/memory src/scheduler src/utils
+# Nombre del archivo ejecutable final que se va a generar
+TARGET = simulador_os
 
-SRC = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.c))
+# Lista de todos los archivos objeto necesarios para el enlace modular
+OBJS = main.o first_fit.o coalescence.o queue.o circular_queue.o stack.o fifo.o round_robin.o sjf.o
 
-TESTS = $(wildcard tests/*.c)
+# Regla principal: Compila todo el proyecto de forma automática
+all: $(TARGET)
 
-all: clean build
+# Enlace de los objetos intermedios para producir el binario ejecutable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-build:
-	mkdir -p bin
-	$(CC) $(CFLAGS) $(SRC) -o bin/main
+# Reglas de compilación individuales para asegurar modularidad limpia
+main.o: main.c process.h memory_manager.h circular_queue.h stack.h
+	$(CC) $(CFLAGS) -c main.c
 
-run: build
-	./bin/main
+first_fit.o: first_fit.c memory_manager.h
+	$(CC) $(CFLAGS) -c first_fit.c
 
-test: clean
-	mkdir -p bin
-	$(CC) $(CFLAGS) $(TESTS) $(filter-out src/main.c, $(SRC)) -o bin/tests
-	./bin/tests
+coalescence.o: coalescence.c memory_manager.h
+	$(CC) $(CFLAGS) -c coalescence.c
 
-# NUEVO FLUJO AUTOMATIZADO
-simulate: build
-	@echo "\n=== 0. PREPARANDO ESTRUCTURA DE CARPETAS ==="
-	mkdir -p data/inputs data/outputs data/logs reports/png
-	@echo "\n=== 1. GENERANDO CARGA EN DATA/INPUTS ==="
-	python3 scripts/1_generador.py
-	@echo "\n=== 2. EJECUTANDO KERNEL DEL SIMULADOR ==="
-	./bin/main
-	@echo "\n=== 3. GENERANDO GRÁFICAS EN REPORTS/PNG ==="
-	python3 scripts/2_graficador.py
-	@echo "\n=== 4. ANALIZANDO TENDENCIAS DE CPU ==="
-	python3 scripts/3_analisis.py
-	@echo "\n=== SIMULACIÓN EN CADENA CONCLUIDA ==="
+queue.o: queue.c queue.h
+	$(CC) $(CFLAGS) -c queue.c
 
+circular_queue.o: circular_queue.c circular_queue.h
+	$(CC) $(CFLAGS) -c circular_queue.c
+
+stack.o: stack.c stack.h
+	$(CC) $(CFLAGS) -c stack.c
+
+fifo.o: fifo.c scheduler.h queue.h process.h
+	$(CC) $(CFLAGS) -c fifo.c
+
+round_robin.o: round_robin.c circular_queue.h process.h
+	$(CC) $(CFLAGS) -c round_robin.c
+
+sjf.o: sjf.c process.h
+	$(CC) $(CFLAGS) -c sjf.c
+
+# Regla de limpieza para remover archivos intermedios y dejar la carpeta impecable
 clean:
-	rm -rf bin/*
+	rm -f *.o $(TARGET)
