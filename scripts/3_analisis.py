@@ -2,13 +2,13 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def analizar_tendencias(archivo_entrada="data/outputs/resultados.csv"):
+def analizar_tendencias(archivo_entrada="resultados.csv"):
     try:
         df = pd.read_csv(archivo_entrada)
         df.columns = df.columns.str.strip()
         df['Estado_Final'] = df['Estado_Final'].str.strip() # Solución al ValueError
     except FileNotFoundError:
-        print(f"Error: Resultados no encontrados en {archivo_entrada}.")
+        print("Error: Resultados no encontrados.")
         return
 
     plt.figure(figsize=(8, 6))
@@ -28,10 +28,8 @@ def analizar_tendencias(archivo_entrada="data/outputs/resultados.csv"):
     plt.ylabel('Memoria Requerida (MB)')
     plt.grid(True, linestyle=':', alpha=0.6)
 
-    # Guardamos la imagen en la carpeta de reportes
-    ruta_salida = "reports/png/analisis_dispersion.png"
-    plt.savefig(ruta_salida, dpi=300)
-    print(f"Analisis estadistico guardado como '{ruta_salida}'. ")
+    plt.savefig("analisis_dispersion.png", dpi=300)
+    print("Analisis estadistico guardado como 'analisis_dispersion.png'. ")
 
 if __name__ == "__main__":
     analizar_tendencias()
